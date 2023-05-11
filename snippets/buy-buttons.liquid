@@ -54,6 +54,12 @@
           disabled
           class="product-variant-id"
         >
+                  {% comment %} Awtomic Subscriptions {% endcomment %}
+          {% capture awtomic_plan_selector %}{% render 'awtomic-plan-selector', product: product %}{% endcapture %}
+          {% unless awtomic_plan_selector contains "Liquid error" %}
+          {{ awtomic_plan_selector }}
+          {% endunless %}
+          {% comment %} End Awtomic Subscriptions {% endcomment %}
 
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}

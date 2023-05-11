@@ -294,7 +294,43 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
   {% include 'elscup_theme' %}
+
+        {% comment %} Awtomic Subscriptions {% endcomment %}
+    {% capture awtomic-imports %}{% render 'awtomic-imports' %}{% endcapture %}
+    {% unless awtomic-imports contains "Liquid error" %}
+      {{ awtomic-imports }}
+    {% endunless %}
+    {% capture awtomic-theme-custom %}{% render 'awtomic-theme-custom' %}{% endcapture %}
+    {% unless awtomic-theme-custom contains "Liquid error" %}
+      {{ awtomic-theme-custom }}
+    {% endunless %}
+    {% comment %} End Awtomic Subscriptions {% endcomment %}
+
+<script>
+  setTimeout(() => {
+ let carousel = document.querySelectorAll(".okeReviews-reviewsCarousel-slider-slide");
+ let reviewTruncate = document.querySelectorAll(".okeReviews-review-main-content-untruncate");
+ let filterContent = document.querySelectorAll(".okeReviews-filters-content");
+ let vote = document.querySelectorAll(".okeReviews-review-helpful-vote-button");
+
+    for(let i = 0; i < carousel.length; i++){
+      carousel[i].removeAttribute("aria-hidden");
+    }
+    for(let i = 0; i < reviewTruncate.length; i++){
+      reviewTruncate[i].removeAttribute("aria-hidden");
+    }
+    for(let i = 0; i < filterContent.length; i++){
+      filterContent[i].removeAttribute("aria-hidden");
+    }
+    for(let i = 0; i < vote.length; i++){
+      vote[i].removeAttribute("aria-label");
+    }
+    
+  }, 1000);
+    </script>
+    <span id="filters" style="display: none;">filters</span>
+    {% section 'sezzle-widget' %}
 </body>
 </html>
 
-{% section 'sezzle-widget' %}
+
